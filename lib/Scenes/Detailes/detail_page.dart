@@ -72,22 +72,29 @@ class DetailPage extends StatelessWidget {
               ),
               Padding(
                 padding: EdgeInsets.only(top: 200),
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(primary: kColorDark),
-                  onPressed: () {
-                    launch(blog.uri);
-                  },
-                  child: Text(
-                    'الرابط',
-                    style: GoogleFonts.tajawal(
-                      color: kColorWhite,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: blog.uri.map((e) => buttonUrl(e, blog.uri.indexOf(e)+1)).toList(),
                 ),
               )
             ],
           ),
+        ),
+      ),
+    );
+  }
+  
+  Widget buttonUrl(url,int numperOFurl){
+    return ElevatedButton(
+      style: ElevatedButton.styleFrom(primary: kColorDark),
+      onPressed: () {
+        launch(url);
+      },
+      child: Text(
+        ' لرابط $numperOFurl',
+        style: GoogleFonts.tajawal(
+          color: kColorWhite,
+          fontWeight: FontWeight.bold,
         ),
       ),
     );

@@ -7,6 +7,7 @@ import 'package:tech_app/Constant.dart';
 import 'package:tech_app/Modules/blog_module.dart';
 import 'package:tech_app/Scenes/Home/blog_item.dart';
 import 'package:tech_app/Scenes/NextPage/next_page.dart';
+import 'package:tech_app/Scenes/Profile/profile_page.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -34,20 +35,39 @@ class _HomeState extends State<Home> {
               ),
             ),
             leading: Center(
-              child: Container(
-                width: 50,
-                height: 50,
-                decoration: BoxDecoration(
-                  image: DecorationImage(image: AssetImage('asset/logo.jpeg')),
-                  borderRadius: BorderRadius.circular(50),
-                  color: kColorDark,
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      PageTransition(
+                          type: PageTransitionType.rightToLeft,
+                          child: ProfilePage()));
+                },
+                child: Container(
+                  width: 50,
+                  height: 50,
+                  decoration: BoxDecoration(
+                    image:
+                        DecorationImage(image: AssetImage('asset/logo.jpeg')),
+                    borderRadius: BorderRadius.circular(50),
+                    color: kColorDark,
+                  ),
                 ),
               ),
             ),
             actions: [
-              TextButton(onPressed: (){
-                Navigator.push(context, PageTransition(type: PageTransitionType.leftToRight, child: NextPage(2)));
-              }, child: Text('الصفحة التالية',style: GoogleFonts.tajawal(),))
+              TextButton(
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        PageTransition(
+                            type: PageTransitionType.leftToRight,
+                            child: NextPage(2)));
+                  },
+                  child: Text(
+                    'الصفحة التالية',
+                    style: GoogleFonts.tajawal(),
+                  ))
             ],
           ),
           body: Container(
@@ -58,9 +78,13 @@ class _HomeState extends State<Home> {
                   context,
                   Blog(
                     ' للانستقرام موقع تحط فيه اسم اي حساب تبيه ويظهر لك تحليل عن متابعينه والايكات حقيقيناو وهميين بالارقام',
-                    'https://influencermarketinghub.com/instagram-fake-follower-bot-checker-free/',
+                    [
+                      'https://influencermarketinghub.com/instagram-fake-follower-bot-checker-free/',
+                      'http://shutterstock.com',
+                      'http://fotolia.com'
+                    ],
                     DateTime.now(),
-                    title:'تحليل للحساب',
+                    title: 'تحليل للحساب',
                   ),
                 );
               },

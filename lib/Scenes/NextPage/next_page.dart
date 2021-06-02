@@ -6,11 +6,13 @@ import 'package:page_transition/page_transition.dart';
 import 'package:tech_app/Constant.dart';
 import 'package:tech_app/Modules/blog_module.dart';
 import 'package:tech_app/Scenes/Home/blog_item.dart';
+import 'package:tech_app/Scenes/Profile/profile_page.dart';
 
 class NextPage extends StatelessWidget {
   final int numperPage;
 
   const NextPage(this.numperPage);
+
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -31,19 +33,47 @@ class NextPage extends StatelessWidget {
               ),
             ),
             leading: Center(
-              child: Container(
-                width: 50,
-                height: 50,
-                decoration: BoxDecoration(
-                  image: DecorationImage(image: AssetImage('asset/logo.jpeg')),
-                  borderRadius: BorderRadius.circular(50),
-                  color: kColorDark,
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      PageTransition(
+                          type: PageTransitionType.rightToLeft,
+                          child: ProfilePage()));
+                },
+                child: Container(
+                  width: 50,
+                  height: 50,
+                  decoration: BoxDecoration(
+                    image:
+                        DecorationImage(image: AssetImage('asset/logo.jpeg')),
+                    borderRadius: BorderRadius.circular(50),
+                    color: kColorDark,
+                  ),
                 ),
               ),
             ),
             actions: [
-              IconButton(icon: Icon(Icons.arrow_back_ios_rounded,color: Colors.blue,), onPressed: (){Navigator.pop(context);}),
-              IconButton(icon: Icon(Icons.arrow_forward_ios_rounded,color: Colors.blue,), onPressed: (){Navigator.push(context, PageTransition(type: PageTransitionType.leftToRight, child: NextPage(numperPage+1)));}),
+              IconButton(
+                  icon: Icon(
+                    Icons.arrow_back_ios_rounded,
+                    color: Colors.blue,
+                  ),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  }),
+              IconButton(
+                  icon: Icon(
+                    Icons.arrow_forward_ios_rounded,
+                    color: Colors.blue,
+                  ),
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        PageTransition(
+                            type: PageTransitionType.leftToRight,
+                            child: NextPage(numperPage + 1)));
+                  }),
             ],
           ),
           body: Container(
@@ -54,9 +84,9 @@ class NextPage extends StatelessWidget {
                   context,
                   Blog(
                     ' للانستقرام موقع تحط فيه اسم اي حساب تبيه ويظهر لك تحليل عن متابعينه والايكات حقيقيناو وهميين بالارقام',
-                    'https://influencermarketinghub.com/instagram-fake-follower-bot-checker-free/',
+                    ['https://influencermarketinghub.com/instagram-fake-follower-bot-checker-free/'],
                     DateTime.now(),
-                    title:'تحليل للحساب',
+                    title: 'تحليل للحساب',
                   ),
                 );
               },
